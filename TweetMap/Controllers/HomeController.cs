@@ -20,15 +20,24 @@ namespace TweetMap.Controllers
             return View();
         }
 
-
-        public string GetTweetsInLocationRadius(double lat,double lng, int rad)
+        /// <summary>
+        /// For now get locations by twitter api
+        /// </summary>
+        /// <param name="lat"></param>
+        /// <param name="lng"></param>
+        /// <param name="rad"></param>
+        /// <returns></returns>
+        public string GetTweetsInLocationRadius(double lat,double lng, double rad)
         {
+            // Set Credentials
             Auth.SetUserCredentials("QLX3za3r0cdo4b11D3uoD9uqZ",
                 "WE8fLGr2oRkTJjpwJmwoN9xVZmXGPXYAS23NSdA1qP7jFVDE1m",
                 "1159076078369091584-T2hT14Q4NIZZUbMH2UVWyNPikwdNmS",
                 "T7gb0JAKj3yErHbSW9CCO8eLLdm0l6Ki4IwiF94DoFYRm");
 
-            var searchParameter = new SearchTweetsParameters(new GeoCode(lat, lng, 25, DistanceMeasure.Miles));
+            // Set Paramter
+            double distancerequested = rad / 1000;
+            var searchParameter = new SearchTweetsParameters(new GeoCode(lat, lng, distancerequested, DistanceMeasure.Kilometers));
 
             var tweets = Search.SearchTweets(searchParameter);
 

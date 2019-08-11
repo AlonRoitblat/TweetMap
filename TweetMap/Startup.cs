@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Tweetinvi;
+using Tweetinvi.Models;
 
 namespace TweetMap
 {
@@ -59,6 +61,38 @@ namespace TweetMap
                     name: "default",
                     template: "{controller=Home}/{action=Index}");
             });
+
+            // here we are dealing with the twitter api stream
+            Task.Run(BeginTwitterStream);
         }
+
+
+
+        public static async void BeginTwitterStream()
+        {
+            // Get Authentication
+            Auth.SetUserCredentials("QLX3za3r0cdo4b11D3uoD9uqZ",
+                "WE8fLGr2oRkTJjpwJmwoN9xVZmXGPXYAS23NSdA1qP7jFVDE1m",
+                "1159076078369091584-T2hT14Q4NIZZUbMH2UVWyNPikwdNmS",
+                "T7gb0JAKj3yErHbSW9CCO8eLLdm0l6Ki4IwiF94DoFYRm");
+
+            // Create Stream
+            var stream = Stream.CreateSampleStream();
+
+            // sign into event 
+            stream.TweetReceived += (sender, args) =>
+            {
+                if (!(args.Tweet.Coordinates is null))
+                {
+                    Console.WriteLine("Tweet Recieved with location");
+                }
+            };
+            
+            // Start
+            stream.StartStream();
+        }
+
+
+
     }
 }
