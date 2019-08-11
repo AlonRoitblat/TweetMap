@@ -10,6 +10,7 @@ namespace TweetMap.Models
         public double Longitude { get; set; }
 
         public double Latitude { get; set; }
+
         public CoordinatesModel(double latitude, double longitude)
         {
             this.Longitude = longitude;

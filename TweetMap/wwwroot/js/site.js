@@ -62,7 +62,7 @@ mymap.on('click', function (e) {
 const populateTweetsIntoTable = (tweets) => {
 
     // Get Table element
-    let tableBody = document.getElementById("tableBody");
+    let tableBody = document.getElementById("TableBody");
 
     // Initialize inner content
     tableBody.innerHTML = '';

@@ -17,6 +17,6 @@ namespace TweetMap.Models
 
         public string Text { get; set; }
 
-        public CoordinatesModel coordinates { get; set; }
+        public CoordinatesModel Coordinates { get; set; }
     }
 }

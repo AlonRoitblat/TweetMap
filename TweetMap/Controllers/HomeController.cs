@@ -24,7 +24,7 @@ namespace TweetMap.Controllers
         /// <param name="lng"></param>
         /// <param name="rad"></param>
         /// <returns></returns>
-        public string GetTweetsInLocationRadius(double lat,double lng, double rad)
+        public string GetTweetsInLocationRadius(double lat, double lng, double rad)
         {
             #region Old code for data from api
             //// Set Credentials
@@ -52,7 +52,7 @@ namespace TweetMap.Controllers
                 Console.WriteLine(ex.InnerException);
                 return null;
             }
-            
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

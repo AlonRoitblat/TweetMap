@@ -68,7 +68,7 @@ namespace TweetMap
             //DBManager.InsertObject(new TweetModel()
             //{
             //    _id = new Random().Next(),
-            //    coordinates = new CoordinatesModel(40.749743519532984, -73.996696472167983),
+            //    Coordinates = new CoordinatesModel(40.749743519532984, -73.996696472167983),
             //    Text = "This is a Test Tweet",
             //    UserName = "Alon"
             //});
@@ -83,7 +83,7 @@ namespace TweetMap
         /// <summary>
         /// Authenticate with keys and start listening to twitter sample stream 
         /// </summary>
-        public static async void BeginTwitterStream()
+        public static void BeginTwitterStream()
         {
             // Get Authentication
             Auth.SetUserCredentials("QLX3za3r0cdo4b11D3uoD9uqZ",
@@ -100,14 +100,14 @@ namespace TweetMap
                 if (!(args.Tweet.Coordinates is null))
                 {
                     // Add to DB
-                    Console.WriteLine("Tweet Recieved with location");
+                    Console.WriteLine("Tweet received with location");
                     var tweetToInsertToDB = new TweetModel()
                     {
                         _id = args.Tweet.Id,
                         Text = args.Tweet.FullText,
                         UserName = args.Tweet.CreatedBy.Name,
-                        coordinates = new CoordinatesModel(args.Tweet.Coordinates.Latitude, 
-                                                           args.Tweet.Coordinates.Longitude) 
+                        Coordinates = new CoordinatesModel(args.Tweet.Coordinates.Latitude,
+                                                           args.Tweet.Coordinates.Longitude)
                     };
                     DBManager.InsertObject(tweetToInsertToDB);
                 }

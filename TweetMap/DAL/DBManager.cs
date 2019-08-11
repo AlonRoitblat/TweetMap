@@ -8,6 +8,7 @@ namespace TweetMap
     public static class DBManager
     {
 
+        // Create or use existing DB
         public static bool InsertObject(TweetModel tweetToInsert)
         {
             // Open database (or create if not exits)
@@ -25,12 +26,12 @@ namespace TweetMap
                     Console.WriteLine(e.InnerException);
                     return false;
                 }
-                
-                
+
+
             }
         }
 
-        public static IEnumerable<TweetModel> SearchTweets(CoordinatesModel coordinates,double radius)
+        public static IEnumerable<TweetModel> SearchTweets(CoordinatesModel coordinates, double radius)
         {
             using (var db = new LiteDatabase(@"TweetsDB.db"))
             {
@@ -38,7 +39,7 @@ namespace TweetMap
                 var tweets = db.GetCollection<TweetModel>("tweets");
 
                 var Result = tweets.Find(tweetToCheck => isLocInRadOfTweet(coordinates, radius, tweetToCheck));
-                
+
                 return Result;
             }
         }
@@ -49,14 +50,22 @@ namespace TweetMap
         /// </summary>
         private static bool isLocInRadOfTweet(CoordinatesModel coords, double rad, TweetModel TweetToCheck)
         {
-            // Get Distance
-            double Distance = GetDistance(coords.Latitude,
-                                          coords.Longitude,
-                                          TweetToCheck.coordinates.Latitude,
-                                          TweetToCheck.coordinates.Longitude);
+            if (!(TweetToCheck.Coordinates is null))
+            {
+                // Get Distance
+                double Distance = GetDistance(coords.Latitude,
+                    coords.Longitude,
+                    TweetToCheck.Coordinates.Latitude,
+                    TweetToCheck.Coordinates.Longitude);
 
-            // If the distance is less than the rad then its within
-            return Distance < rad;
+                // If the distance is less than the rad then its within
+                return Distance < rad;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         /// <summary>

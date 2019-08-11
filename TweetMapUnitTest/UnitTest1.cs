@@ -16,7 +16,7 @@ namespace UnitTestTweetMap
             var result = DBManager.InsertObject(new TweetModel()
             {
                 _id = new Random().Next(),
-                coordinates = new CoordinatesModel(40.749743519532984, -73.996696472167983),
+                Coordinates = new CoordinatesModel(40.749743519532984, -73.996696472167983),
                 Text = "This is a Test Tweet"
             });
             Assert.AreEqual(true, result);
