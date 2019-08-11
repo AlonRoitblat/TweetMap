@@ -4,11 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Tweetinvi;
-using Tweetinvi.Models;
-using Tweetinvi.Parameters;
+using Newtonsoft.Json;
 using TweetMap.Models;
-using Tweet = Tweetinvi.Tweet;
 
 namespace TweetMap.Controllers
 {
@@ -43,11 +40,11 @@ namespace TweetMap.Controllers
             //var tweets = Search.SearchTweets(searchParameter);
             #endregion
 
-            var tweets = DBManager.SearchTweets(new Coordinates(lat, lng), rad / 1000);
+            var tweets = DBManager.SearchTweets(new CoordinatesModel(lat, lng), rad / 1000);
 
             try
             {
-                return tweets.ToJson();
+                return JsonConvert.SerializeObject(tweets);
             }
             catch (Exception ex)
             {

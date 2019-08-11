@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tweetinvi;
-using Tweetinvi.Models;
 using TweetMap.Models;
 
 
@@ -64,7 +63,17 @@ namespace TweetMap
                     template: "{controller=Home}/{action=Index}");
             });
 
+            #region For Test
+            // Add Test Data for debug
+            DBManager.InsertObject(new TweetModel()
+            {
+                _id = new Random().Next(),
+                coordinates = new CoordinatesModel(40.749743519532984, -73.996696472167983),
+                Text = "This is a Test Tweet",
+                UserName = "Alon"
+            });
 
+            #endregion
 
             // here we are dealing with the twitter api stream
             Task.Run(BeginTwitterStream);
@@ -95,7 +104,8 @@ namespace TweetMap
                         _id = args.Tweet.Id,
                         Text = args.Tweet.FullText,
                         UserName = args.Tweet.CreatedBy.Name,
-                        coordinates = args.Tweet.Coordinates
+                        coordinates = new CoordinatesModel(args.Tweet.Coordinates.Latitude, 
+                                                           args.Tweet.Coordinates.Longitude) 
                     };
                     DBManager.InsertObject(tweetToInsertToDB);
                 }

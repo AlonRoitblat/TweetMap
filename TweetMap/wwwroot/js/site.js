@@ -9,7 +9,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?acce
 }).addTo(mymap);
 
 // Add Test Marker according to data in DB to visualize 
-var marker = L.marker([40.731940367490367, -73.996696472167983]);
+var marker = L.marker([40.749743519532984, -73.996696472167983]);
 marker.bindPopup("This is a test tweet in specific location").openPopup();
 marker.addTo(mymap);
 

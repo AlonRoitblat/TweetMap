@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Tweetinvi.Models;
 
 namespace TweetMap.Models
 {
@@ -18,6 +17,6 @@ namespace TweetMap.Models
 
         public string Text { get; set; }
 
-        public ICoordinates coordinates { get; set; }
+        public CoordinatesModel coordinates { get; set; }
     }
 }

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using LiteDB;
-using Newtonsoft.Json.Bson;
-using Tweetinvi.Models;
 using TweetMap.Models;
 
 namespace TweetMap
@@ -35,7 +30,7 @@ namespace TweetMap
             }
         }
 
-        public static IEnumerable<TweetModel> SearchTweets(Coordinates coordinates,double radius)
+        public static IEnumerable<TweetModel> SearchTweets(CoordinatesModel coordinates,double radius)
         {
             using (var db = new LiteDatabase(@"TweetsDB.db"))
             {
@@ -52,7 +47,7 @@ namespace TweetMap
         /// <summary>
         /// Function to determine if a location of tweet matches the clicked input
         /// </summary>
-        private static bool isLocInRadOfTweet(Coordinates coords, double rad, TweetModel TweetToCheck)
+        private static bool isLocInRadOfTweet(CoordinatesModel coords, double rad, TweetModel TweetToCheck)
         {
             // Get Distance
             double Distance = GetDistance(coords.Latitude,
