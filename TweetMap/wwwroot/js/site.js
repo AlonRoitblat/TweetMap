@@ -8,10 +8,15 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?acce
     accessToken: 'pk.eyJ1IjoiYWxvbmltdW4iLCJhIjoiY2p6NDh4YnQyMGF0MjNwbnljaGZtaXk4NCJ9.XkWuo7aZolmsqBcrC-1afA'
 }).addTo(mymap);
 
+// Add Test Marker according to data in DB to visualize 
+var marker = L.marker([40.731940367490367, -73.996696472167983]);
+marker.bindPopup("This is a test tweet in specific location").openPopup();
+marker.addTo(mymap);
 
 // Initialize location to remove later
 let circle = new L.circleMarker();
 
+// Limit spam of requests
 let allowClick = true;
 // Add Map event to Create Circle in location
 mymap.on('click', function (e) {
@@ -34,7 +39,7 @@ mymap.on('click', function (e) {
         radius: 500
     }).addTo(mymap);
 
-    // Get Tweets within give location
+    // Get Tweets within given location
     $.get("/Home/GetTweetsInLocationRadius", { lat: CircleLocation.lat, lng: CircleLocation.lng, rad: circle.getRadius() }, function (data) {
 
         if (data != undefined) {
@@ -47,7 +52,7 @@ mymap.on('click', function (e) {
     });  
 });
 
-// Populate server
+// Populate Table
 const populateTweetsIntoTable = (tweets) => {
 
     // Get Table element

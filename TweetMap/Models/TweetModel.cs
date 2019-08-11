@@ -6,11 +6,10 @@ using Tweetinvi.Models;
 
 namespace TweetMap.Models
 {
-    public class Tweet
+    public class TweetModel
     {
-        public Tweet()
+        public TweetModel()
         {
-
         }
 
         public long _id { get; set; }

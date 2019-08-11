@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tweetinvi;
 using Tweetinvi.Models;
+using TweetMap.Models;
 
 
 namespace TweetMap
@@ -87,14 +88,20 @@ namespace TweetMap
             {
                 if (!(args.Tweet.Coordinates is null))
                 {
+                    // Add to DB
                     Console.WriteLine("Tweet Recieved with location");
-                    var tweetToInsertToDB = new Models.Tweet() { _id = args.Tweet.Id, Text = args.Tweet.FullText, UserName = args.Tweet.IdStr, coordinates = args.Tweet.Coordinates };
-                    ;
+                    var tweetToInsertToDB = new TweetModel()
+                    {
+                        _id = args.Tweet.Id,
+                        Text = args.Tweet.FullText,
+                        UserName = args.Tweet.CreatedBy.Name,
+                        coordinates = args.Tweet.Coordinates
+                    };
                     DBManager.InsertObject(tweetToInsertToDB);
                 }
             };
 
-            // Start
+            // Start steam
             stream.StartStream();
         }
 

@@ -52,6 +52,7 @@ namespace TweetMap.Controllers
             catch (Exception ex)
             {
 
+                Console.WriteLine(ex.InnerException);
                 return null;
             }
             
