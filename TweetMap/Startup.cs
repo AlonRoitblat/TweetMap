@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Tweetinvi;
 using Tweetinvi.Models;
 
+
 namespace TweetMap
 {
     public class Startup
@@ -62,6 +63,8 @@ namespace TweetMap
                     template: "{controller=Home}/{action=Index}");
             });
 
+
+
             // here we are dealing with the twitter api stream
             Task.Run(BeginTwitterStream);
         }
@@ -85,14 +88,14 @@ namespace TweetMap
                 if (!(args.Tweet.Coordinates is null))
                 {
                     Console.WriteLine("Tweet Recieved with location");
+                    var tweetToInsertToDB = args.Tweet;
+                    DBManager.InsertObject(tweetToInsertToDB);
                 }
             };
             
             // Start
             stream.StartStream();
         }
-
-
 
     }
 }

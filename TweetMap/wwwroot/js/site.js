@@ -36,7 +36,14 @@ mymap.on('click', function (e) {
 
     // Get Tweets within give location
     $.get("/Home/GetTweetsInLocationRadius", { lat: CircleLocation.lat, lng: CircleLocation.lng, rad: circle.getRadius() }, function (data) {
-        populateTweetsIntoTable(JSON.parse(data));
+
+        if (data != undefined) {
+            let convertedData = JSON.parse(data);
+            if (convertedData != undefined) {
+                populateTweetsIntoTable(convertedData);
+            }
+        }
+
     });  
 });
 
