@@ -1,11 +1,28 @@
-﻿@model TweetMap.Models.Tweet
+﻿@model TweetMap.ViewModels.TweetsAtLocViewModel
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div id="TweetMap" style="height: 70vh;width:auto;"></div>
+            </div>
+            <div class="col-sm-4">
+                <table class="table">
 
-
-<div class="text-center">
-    <div id="TweetMap" style="height: 70vh; "></div>
+                    <thead>
+                        <tr>
+                            <th scope="col">User</th>
+                            <th scope="col">Text</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

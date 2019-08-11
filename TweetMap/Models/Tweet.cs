@@ -8,8 +8,7 @@ namespace TweetMap.Models
 {
     public class Tweet
     {
-        public int tweetID { get; set; }
+        public long tweetID { get; set; }
         public string tweetText { get; set; }
-        public Point Location { get; set; }
     }
 }

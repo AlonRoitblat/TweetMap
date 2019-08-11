@@ -28,23 +28,9 @@ namespace TweetMap.Controllers
                 "1159076078369091584-T2hT14Q4NIZZUbMH2UVWyNPikwdNmS",
                 "T7gb0JAKj3yErHbSW9CCO8eLLdm0l6Ki4IwiF94DoFYRm");
 
-            var searchParameter = new SearchTweetsParameters("tweetinvi")
-            {
-                GeoCode = new GeoCode(lat, lng, 25, DistanceMeasure.Miles),
+            var searchParameter = new SearchTweetsParameters(new GeoCode(lat, lng, 25, DistanceMeasure.Miles));
 
-            };
-
-            var matchingTweets = Search.SearchTweets("This is a test tweet");
             var tweets = Search.SearchTweets(searchParameter);
-
-            foreach (Tweetinvi.Logic.Tweet currentTweet in matchingTweets)
-            {
-                if (currentTweet.Place != null)
-                {
-                    Console.WriteLine("");
-                }
-            }
-
 
             return tweets.ToJson();
         }
