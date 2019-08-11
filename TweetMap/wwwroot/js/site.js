@@ -60,8 +60,8 @@ const populateTweetsIntoTable = (tweets) => {
     for (const tweet of tweets) {
 
         // Get Texts
-        let tweetText = tweet.full_text;
-        let tweetUsername = tweet.user.name;
+        let tweetText = tweet.Text;
+        let tweetUsername = tweet.UserName;
 
         // create elements
         let tweetElement = document.createElement("tr");

@@ -49,7 +49,7 @@ namespace TweetMap.Controllers
             {
                 return tweets.ToJson();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return null;

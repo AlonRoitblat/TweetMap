@@ -88,11 +88,12 @@ namespace TweetMap
                 if (!(args.Tweet.Coordinates is null))
                 {
                     Console.WriteLine("Tweet Recieved with location");
-                    var tweetToInsertToDB = args.Tweet;
+                    var tweetToInsertToDB = new Models.Tweet() { _id = args.Tweet.Id, Text = args.Tweet.FullText, UserName = args.Tweet.IdStr, coordinates = args.Tweet.Coordinates };
+                    ;
                     DBManager.InsertObject(tweetToInsertToDB);
                 }
             };
-            
+
             // Start
             stream.StartStream();
         }

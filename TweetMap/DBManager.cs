@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using LiteDB;
 using Newtonsoft.Json.Bson;
-using Tweetinvi;
 using Tweetinvi.Models;
 using TweetMap.Models;
 
@@ -14,30 +13,30 @@ namespace TweetMap
     public static class DBManager
     {
 
-        public static bool InsertObject(ITweet objectToInsert)
+        public static bool InsertObject(Tweet tweetToInsert)
         {
             // Open database (or create if not exits)
             using (var db = new LiteDatabase(@"TweetsDB.db"))
             {
                 // Get customer collection
-                var tweets = db.GetCollection<ITweet>("tweets");
+                var tweets = db.GetCollection<Tweet>("tweets");
 
                 // Insert new customer document (Id will be auto-incremented)
-                return tweets.Insert(objectToInsert) != null;
+                return tweets.Insert(tweetToInsert) != null;
             }
         }
 
         // TODO ADD SEARCH FUNCTION
 
-        public static IEnumerable<ITweet> SearchTweets(Coordinates coordinates,double radius)
+        public static IEnumerable<Tweet> SearchTweets(Coordinates coordinates,double radius)
         {
             using (var db = new LiteDatabase(@"TweetsDB.db"))
             {
                 // Get customer collection
-                var tweets = db.GetCollection<ITweet>("tweets");
+                var tweets = db.GetCollection<Tweet>("tweets");
 
                 //return tweets.Find(x => isLocInRad(coordinates, radius, x));
-                var Result = tweets.Find(x => x.FullText.Contains("i"));
+                var Result = tweets.Find(x => x.Text.Contains("i"));
                 return Result;
             }
         }
