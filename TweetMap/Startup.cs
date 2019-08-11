@@ -65,13 +65,13 @@ namespace TweetMap
 
             #region For Test
             // Add Test Data for debug
-            DBManager.InsertObject(new TweetModel()
-            {
-                _id = new Random().Next(),
-                coordinates = new CoordinatesModel(40.749743519532984, -73.996696472167983),
-                Text = "This is a Test Tweet",
-                UserName = "Alon"
-            });
+            //DBManager.InsertObject(new TweetModel()
+            //{
+            //    _id = new Random().Next(),
+            //    coordinates = new CoordinatesModel(40.749743519532984, -73.996696472167983),
+            //    Text = "This is a Test Tweet",
+            //    UserName = "Alon"
+            //});
 
             #endregion
 
@@ -80,7 +80,9 @@ namespace TweetMap
         }
 
 
-
+        /// <summary>
+        /// Authenticate with keys and start listening to twitter sample stream 
+        /// </summary>
         public static async void BeginTwitterStream()
         {
             // Get Authentication

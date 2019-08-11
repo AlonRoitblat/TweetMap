@@ -9,9 +9,15 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?acce
 }).addTo(mymap);
 
 // Add Test Marker according to data in DB to visualize 
-var marker = L.marker([40.749743519532984, -73.996696472167983]);
+let marker = L.marker([40.749743519532984, -73.996696472167983]);
 marker.bindPopup("This is a test tweet in specific location").openPopup();
 marker.addTo(mymap);
+
+marker = L.marker([40.749743519532984, -73.996696472167983]);
+marker.bindPopup("This is a test tweet in specific location").openPopup();
+marker.addTo(mymap);
+
+$('#Radius').val(500)
 
 // Initialize location to remove later
 let circle = new L.circleMarker();
@@ -36,7 +42,7 @@ mymap.on('click', function (e) {
         color: 'lightblue',
         fillColor: 'lightblue',
         fillOpacity: 0.5,
-        radius: 500
+        radius: $('#Radius').val()
     }).addTo(mymap);
 
     // Get Tweets within given location
