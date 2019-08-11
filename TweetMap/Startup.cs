@@ -81,7 +81,7 @@ namespace TweetMap
 
 
         /// <summary>
-        /// Authenticate with keys and start listening to twitter sample stream 
+        /// Authenticate with keys and start listening to twitter sample stream, add new tweets to DB
         /// </summary>
         public static void BeginTwitterStream()
         {

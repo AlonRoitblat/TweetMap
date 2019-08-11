@@ -13,13 +13,9 @@ let marker = L.marker([40.749743519532984, -73.996696472167983]);
 marker.bindPopup("This is a test tweet in specific location").openPopup();
 marker.addTo(mymap);
 
-marker = L.marker([40.749743519532984, -73.996696472167983]);
-marker.bindPopup("This is a test tweet in specific location").openPopup();
-marker.addTo(mymap);
-
 $('#Radius').val(500)
 
-// Initialize location to remove later
+// Initialize circle to remove later
 let circle = new L.circleMarker();
 
 // Limit spam of requests
@@ -30,7 +26,6 @@ mymap.on('click', function (e) {
 
     allowClick = false;
 
-    lastClick = new Date().getTime();
     // Remove previous
     mymap.removeLayer(circle);
 

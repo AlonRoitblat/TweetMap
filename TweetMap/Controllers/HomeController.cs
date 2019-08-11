@@ -18,11 +18,8 @@ namespace TweetMap.Controllers
         }
 
         /// <summary>
-        /// For now get locations by twitter api
+        /// Get Tweets in location and radius from DB
         /// </summary>
-        /// <param name="lat"></param>
-        /// <param name="lng"></param>
-        /// <param name="rad"></param>
         /// <returns></returns>
         public string GetTweetsInLocationRadius(double lat, double lng, double rad)
         {
@@ -40,6 +37,7 @@ namespace TweetMap.Controllers
             //var tweets = Search.SearchTweets(searchParameter);
             #endregion
 
+            // Search the tweets according to input data
             var tweets = DBManager.SearchTweets(new CoordinatesModel(lat, lng), rad / 1000);
 
             try

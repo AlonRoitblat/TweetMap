@@ -14,7 +14,7 @@ namespace TweetMap
             // Open database (or create if not exits)
             using (var db = new LiteDatabase(@"TweetsDB.db"))
             {
-                // Get customer collection
+                // Get tweet collection
                 var tweets = db.GetCollection<TweetModel>("tweets");
 
                 try
@@ -35,7 +35,7 @@ namespace TweetMap
         {
             using (var db = new LiteDatabase(@"TweetsDB.db"))
             {
-                // Get customer collection
+                // Get tweet collection
                 var tweets = db.GetCollection<TweetModel>("tweets");
 
                 var Result = tweets.Find(tweetToCheck => isLocInRadOfTweet(coordinates, radius, tweetToCheck));
@@ -46,7 +46,7 @@ namespace TweetMap
 
 
         /// <summary>
-        /// Function to determine if a location of tweet matches the clicked input
+        /// Function to determine if a location of tweet matches the location and radius
         /// </summary>
         private static bool isLocInRadOfTweet(CoordinatesModel coords, double rad, TweetModel TweetToCheck)
         {
